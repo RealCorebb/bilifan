@@ -1,0 +1,65 @@
+@font-face { font-family: "HelveticaNeue-Light"; src: url('../fonts/HelveticaNeue-Light.ttf'); }
+@font-face { font-family: "HelveticaNeue-Thin"; src: url('../fonts/HelveticaNeue-Thin.ttf'); }
+@font-face { font-family: "Montserrat-Light"; src: url('../fonts/Montserrat-Light.otf'); }
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+}
+body {
+	font-family: "Montserrat-Light" !important;
+	background-image: url(../img/background.jpg);
+	background-position: top center;
+	background-size: cover;
+	color: white;
+}
+#subs{
+	font-family: "Montserrat-Light" !important;
+	font-size:150px;
+	font-weight: 100 !important;
+    z-index: 1000;
+	
+}
+#time {
+	font-family: "Montserrat-Light" !important;
+	font-size: 80px;
+	font-weight: 100 !important;
+    z-index: 1000;
+}
+
+#time small {
+	color:white;
+	font-size: 20px;
+}
+
+.timeblock {
+    position: absolute;
+	top: 0;
+	left: 60%;
+    right: 0;
+	z-index: 0;
+	display: table;
+	width: 600px;
+    margin-top:50px;
+}
+
+.timeinner {
+	display: table-cell;
+	vertical-align: top;
+	text-align: left;
+	padding-left: 100px;
+	width: 100%;
+    margin-top:10px;
+}
+
+.background {
+	position: fixed;
+	top: 0;
+	left: 0;
+    right: 0;
+	z-index: 0;
+}
