@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<head>
+<link rel="stylesheet" href="board.css" />
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="animate.js"></script>
+ <script >
+ 
+ var uid="625268";
+var faceurl;
+var topurl;
+var flag=0;
+function doIt(){
+$.getJSON(
+    'https://api.imjad.cn/bilibili/v2/?get=space&vmid='+uid,
+    function (response) {
+		 document.getElementById("subs").innerHTML = response.data.card.fans.toString();
+});
+}
+function Int(){
+
+$.getJSON(
+    'https://api.imjad.cn/bilibili/v2/?get=space&vmid='+uid,
+    function (response) {
+	faceurl=response.data.card.face;
+	topurl=response.data.images.imgUrl;
+	document.getElementById("name").innerHTML = response.data.card.name;
+	document.getElementById('icon').src=faceurl;
+	document.getElementById('banner').style.background="url("+topurl+") "+"no-repeat";
+	
+});
+}
+function change(){
+flag=1;
+document.getElementById('main').style.display="block";
+document.getElementById('input').style.display="none";
+uid=document.getElementById("uid").value;
+}
+function refresh(){
+if(flag){
+Int();
+setInterval(doIt,1000);
+}
+flag=0;
+}
+setInterval(refresh,1);
+
+ </script>
+</head>
+<body>
+<style>
+.input:before {
+  margin: 6%;
+}
+.input {
+  margin:0 auto;
+  margin-top:20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  height: 200px;
+  width: 1080px;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 100px;
+  font-weight: normal;
+  font-family: "Megrim", sans-serif;
+}
+.odometer {
+    width:100%;
+    font-size: 100px;
+	text-align:center;
+}
+#banner{
+	width:1280px;
+	height:200px;
+	margin:0 auto;
+	text-align:center;
+	font-size:20px;
+	color:grey;
+	line-height:35px;
+	background-size:cover !important;
+	background:url() no-repeat
+	
+}
+#banner img{
+border-radius:50%;
+margin-top:150px;
+box-shadow: darkgrey 5px 5px 10px 2px ;//边框阴影
+}
+.fans{
+width:100%;
+font-size:30px;
+text-align:center;
+}
+.icon{
+width:500px;
+margin:0 auto;
+}
+.main{
+display:none;
+top:100px;
+background:white; 
+width:1280px;
+height:500px;
+margin:0 auto;
+border:1px solid darkslategray;
+box-shadow: black 10px 10px 300px 5px ;//边框阴影
+}
+body{
+background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+	background-size: 400% 400%;
+	-webkit-animation: Gradient 15s ease infinite;
+	-moz-animation: Gradient 15s ease infinite;
+	animation: Gradient 15s ease infinite;
+}
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+input{
+background-color:transparent;
+border:0;
+width:980px;
+height:180px;
+text-align:center;
+font-size:100px;
+color:white;
+}
+</style>
+<div class="input" id="input">
+<input type="search" placeholder="请输入您的UID" name="uid" id="uid" onsearch="change()">
+</div>
+<div class="main" id="main">
+<div id="banner" class="banner">
+<div class="icon">
+<img id="icon" src="" width="100" height="100"/>
+</div>
+<div id="name"></div>
+<div id="subs" class="odometer">0</div>
+<div class="fans">粉丝数</div>
+</div>
+</body>
+</html>
